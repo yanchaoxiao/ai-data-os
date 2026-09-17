@@ -1,0 +1,127 @@
+metrics:
+- name: total_cm_card
+  label: 卡支付总CM
+  alias: Total CM(R$)-Card
+  description: 支付方式为credit_card的所有交易CM
+  expr: contribution_margin
+  dimensions:
+  - dt
+  - financial_scenario
+  - financial_sub_scenario
+  tags:
+  - card_installment
+  - cm
+  - core
+  source:
+    table: latam_fintech.app_br_total_cm_2026_df
+    measures:
+      contribution_margin: SUM(contribution_margin)
+  filter:
+    financial_scenario: '!N/A'
+    payment_method: card
+- name: cm_card_installment
+  label: 卡分期CM
+  alias: Total CM(R$)-Card Ins
+  description: 支付方式为credit_card且分期的所有交易CM
+  expr: contribution_margin
+  derived_from: total_cm_card
+  dimensions:
+  - dt
+  - financial_sub_scenario
+  tags:
+  - card_installment
+  - cm
+  source:
+    table: latam_fintech.app_br_total_cm_2026_df
+    measures:
+      contribution_margin: SUM(contribution_margin)
+  filter:
+    financial_sub_scenario: '%installment%'
+    payment_method: card
+- name: cm_card_no_installment
+  label: 卡一期CM
+  alias: Total CM(R$)-Card Noins
+  description: 支付方式为credit_card且非分期的所有交易CM，包含卡入金CM
+  expr: contribution_margin
+  derived_from: total_cm_card
+  dimensions:
+  - dt
+  - financial_scenario
+  tags:
+  - card_installment
+  - cm
+  source:
+    table: latam_fintech.app_br_total_cm_2026_df
+    measures:
+      contribution_margin: SUM(contribution_margin)
+  filter:
+    financial_sub_scenario: '!%installment%'
+    payment_method: card
+- name: cm_pix_card_installment
+  label: Pix分期CM
+  alias: Total CM(R$) - Pix Card Ins
+  description: 支付方式为credit_card且Pix分期的所有交易CM
+  expr: contribution_margin
+  derived_from: cm_card_installment
+  dimensions:
+  - dt
+  tags:
+  - card_installment
+  - cm
+  - pix
+  source:
+    table: latam_fintech.app_br_total_cm_2026_df
+    measures:
+      contribution_margin: SUM(contribution_margin)
+  filter:
+    financial_scenario: '!N/A'
+    financial_sub_scenario: pix_installment
+    payment_method: card
+- name: cm_boleto_card_installment
+  label: Boleto分期CM
+  alias: Total CM(R$) - Boleto Card Ins
+  description: 支付方式为credit_card且Boleto分期的所有交易CM
+  expr: contribution_margin
+  derived_from: cm_card_installment
+  dimensions:
+  - dt
+  tags:
+  - card_installment
+  - cm
+  - boleto
+  source:
+    table: latam_fintech.app_br_total_cm_2026_df
+    measures:
+      contribution_margin: SUM(contribution_margin)
+  filter:
+    financial_scenario: '!N/A'
+    financial_sub_scenario: boleto_installment
+    payment_method: card
+- name: total_revenue
+  label: 总收入
+  description: 所有支付方式的总收入
+  expr: SUM(total_revenue)
+  dimensions:
+  - dt
+  - payment_method
+  tags:
+  - revenue
+  - core
+  source:
+    table: latam_fintech.app_br_total_cm_2026_df
+    measures:
+      total_revenue: SUM(total_revenue)
+- name: total_cost
+  label: 总成本
+  description: 所有支付方式的总成本，含渠道费、资金成本、拒付等
+  expr: SUM(total_cost)
+  dimensions:
+  - dt
+  - payment_method
+  tags:
+  - cost
+  - core
+  source:
+    table: latam_fintech.app_br_total_cm_2026_df
+    measures:
+      total_cost: SUM(total_cost)

@@ -1,0 +1,25 @@
+dimensions:
+  dt:
+    label: 日期
+    type: date
+  payment_method:
+    label: 支付方式
+    type: string
+    values:
+    - card
+    - pix
+    - boleto
+  financial_scenario:
+    label: 金融场景
+    type: string
+    values:
+    - N/A
+    - payment
+    - refund
+  financial_sub_scenario:
+    label: 金融子场景
+    type: string
+    values:
+    - pix_installment
+    - boleto_installment
+    - card_no_installment

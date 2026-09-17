@@ -1,0 +1,45 @@
+{
+  "name": "@ai-xyc/app-aidata",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-xyc/ai": "workspace:*",
+    "@ai-xyc/auth": "workspace:*",
+    "@ai-xyc/types": "workspace:*",
+    "@ai-xyc/ui": "workspace:*",
+    "@ai-xyc/utils": "workspace:*",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "@uiw/react-md-editor": "^4.1.1",
+    "@xyflow/react": "^12.11.0",
+    "axios": "^1.17.0",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^1.17.0",
+    "next": "^14.2.0",
+    "next-auth": "^5.0.0-beta.19",
+    "pg": "^8.11.0",
+    "pgvector": "^0.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.1",
+    "recharts": "^3.8.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/pg": "^8.11.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.4.0"
+  }
+}

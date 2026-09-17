@@ -1,0 +1,24 @@
+{
+  "name": "@ai-xyc/worker-dealflow",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "tsx src/scheduler.ts",
+    "sync:once": "tsx src/sync.ts",
+    "seed": "tsx src/seed.ts"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "https-proxy-agent": "^7.0.4",
+    "node-cron": "^3.0.3",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@types/node-cron": "^3.0.11",
+    "@types/pg": "^8.11.5",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
+  }
+}
